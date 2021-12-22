@@ -6,4 +6,6 @@ data class Video(
     var date : String,
     var image: String,
     var videoId: String
-    )
+    ){
+    constructor(title: String) : this(title, "", "", "", "")
+}
