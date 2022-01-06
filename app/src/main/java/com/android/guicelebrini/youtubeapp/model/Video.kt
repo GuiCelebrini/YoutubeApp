@@ -7,5 +7,5 @@ data class Video(
     var image: String,
     var videoId: String
     ){
-    constructor(title: String) : this(title, "", "", "", "")
+    constructor(title: String, imageUrl: String) : this(title, "", "", imageUrl, "")
 }

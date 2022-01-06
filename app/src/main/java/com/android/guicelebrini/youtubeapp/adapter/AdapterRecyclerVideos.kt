@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.guicelebrini.youtubeapp.R
 import com.android.guicelebrini.youtubeapp.model.Video
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_video_list.view.*
 
 class AdapterRecyclerVideos (val videosList : ArrayList<Video>) : RecyclerView.Adapter<AdapterRecyclerVideos.MyViewHolder>() {
@@ -31,6 +32,7 @@ class AdapterRecyclerVideos (val videosList : ArrayList<Video>) : RecyclerView.A
 
         fun set(video : Video){
             itemView.text_title.text = video.title
+            Picasso.get().load(video.image).into(itemView.image_video)
         }
     }
 }
