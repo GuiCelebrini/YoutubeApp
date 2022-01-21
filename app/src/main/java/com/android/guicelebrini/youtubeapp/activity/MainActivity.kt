@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createVideosList(){
         videosList.add(Video("Entrevista com Zangado", "https://i.ytimg.com/vi/RGZKj3E1CeI/maxresdefault.jpg"))
-        videosList.add(Video("Primeiro vídeo do canal", "https://i.ytimg.com/vi/MfQkckAoKds/mqdefault.jpg"))
+        videosList.add(Video("Primeiro vídeo do canal", "https://i.ytimg.com/vi/SNbZdDqgCn8/maxresdefault.jpg"))
     }
 
     private fun configureRecyclerVideos(){
