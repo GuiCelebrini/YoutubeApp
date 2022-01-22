@@ -2,7 +2,9 @@ package com.android.guicelebrini.youtubeapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.guicelebrini.youtubeapp.R
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         recycler_videos.layoutManager = layoutManager
         recycler_videos.setHasFixedSize(true)
+        recycler_videos.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayout.VERTICAL))
         recycler_videos.adapter = adapter
     }
 }
