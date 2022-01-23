@@ -1,9 +1,17 @@
 package com.android.guicelebrini.youtubeapp.activity
 
+import android.app.SearchManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.ActionProvider
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,5 +55,20 @@ class MainActivity : AppCompatActivity() {
         recycler_videos.setHasFixedSize(true)
         recycler_videos.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayout.VERTICAL))
         recycler_videos.adapter = adapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val menuInflater = menuInflater
+
+        menuInflater.inflate(R.menu.menu_main, menu)
+
+        val menuItem : MenuItem? = menu?.findItem(R.id.action_search)
+        val searchView = menuItem?.actionView as SearchView
+        searchView.queryHint = "Procure um vídeo..."
+
+
+
+        return true
     }
 }
