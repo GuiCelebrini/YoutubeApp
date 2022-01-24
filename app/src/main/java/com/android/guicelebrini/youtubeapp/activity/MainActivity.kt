@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.guicelebrini.youtubeapp.R
 import com.android.guicelebrini.youtubeapp.adapter.AdapterRecyclerVideos
+import com.android.guicelebrini.youtubeapp.helper.YoutubeInfos
 import com.android.guicelebrini.youtubeapp.model.Video
 import kotlinx.android.synthetic.main.activity_main.*
 
