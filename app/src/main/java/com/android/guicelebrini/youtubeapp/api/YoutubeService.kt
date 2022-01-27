@@ -6,6 +6,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 /*
 
@@ -27,8 +28,15 @@ import retrofit2.http.GET
 
 interface YoutubeService {
 
+    //with query it brings together and creates automatically the url
     @GET("search")
-    fun getSearchResult() : Call<SearchResult>
+    fun getSearchResult(
+        @Query("part") part: String,
+        @Query("order") order: String,
+        @Query("maxResults") maxResults: String,
+        @Query("key") key: String,
+        @Query("channelId") channelId: String,
+        ) : Call<SearchResult>
 
 
     companion object{
@@ -44,5 +52,5 @@ interface YoutubeService {
 
 
     }
-    
+
 }

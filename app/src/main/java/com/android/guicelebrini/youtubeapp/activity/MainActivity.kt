@@ -17,9 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.guicelebrini.youtubeapp.R
 import com.android.guicelebrini.youtubeapp.adapter.AdapterRecyclerVideos
+import com.android.guicelebrini.youtubeapp.api.YoutubeService
 import com.android.guicelebrini.youtubeapp.helper.YoutubeInfos
+import com.android.guicelebrini.youtubeapp.model.SearchResult
 import com.android.guicelebrini.youtubeapp.model.Video
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -33,8 +38,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
         configureToolbar()
 
@@ -50,7 +53,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createVideosList(){
+        val youtubeService = YoutubeService.create()
 
+        youtubeService.getSearchResult("snippet", "viewCount", "20", YoutubeInfos.API_KEY, YoutubeInfos.CHANNEL_ID)
+            .enqueue(object : Callback<SearchResult>{
+                override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
+                    Log.i("Resultado", "onResponse: $response")
+                }
+                override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+
+                }
+
+            })
     }
 
     private fun configureRecyclerVideos(){
