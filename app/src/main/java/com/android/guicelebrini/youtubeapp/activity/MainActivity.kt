@@ -28,15 +28,13 @@ class MainActivity : AppCompatActivity() {
     private var videosList : ArrayList<Video> = ArrayList()
     private lateinit var adapter : AdapterRecyclerVideos
 
-    private lateinit var retrofit: Retrofit
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        retrofit = Retrofit.Builder().baseUrl(YoutubeInfos.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+
 
         configureToolbar()
 
