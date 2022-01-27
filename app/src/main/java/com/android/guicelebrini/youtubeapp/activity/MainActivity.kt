@@ -20,15 +20,23 @@ import com.android.guicelebrini.youtubeapp.adapter.AdapterRecyclerVideos
 import com.android.guicelebrini.youtubeapp.helper.YoutubeInfos
 import com.android.guicelebrini.youtubeapp.model.Video
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
     private var videosList : ArrayList<Video> = ArrayList()
     private lateinit var adapter : AdapterRecyclerVideos
 
+    private lateinit var retrofit: Retrofit
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        retrofit = Retrofit.Builder().baseUrl(YoutubeInfos.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
         configureToolbar()
 
@@ -44,8 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createVideosList(){
-        videosList.add(Video("Entrevista com Zangado", "https://i.ytimg.com/vi/RGZKj3E1CeI/maxresdefault.jpg"))
-        videosList.add(Video("Primeiro vídeo do canal", "https://i.ytimg.com/vi/SNbZdDqgCn8/maxresdefault.jpg"))
+
     }
 
     private fun configureRecyclerVideos(){
