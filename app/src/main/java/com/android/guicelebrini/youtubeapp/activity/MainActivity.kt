@@ -31,7 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private var videosList : ArrayList<Video> = ArrayList()
     private lateinit var adapter : AdapterRecyclerVideos
 
 
@@ -43,8 +42,6 @@ class MainActivity : AppCompatActivity() {
         configureToolbar()
 
         createVideosList()
-
-        configureRecyclerVideos()
 
     }
 
@@ -64,13 +61,22 @@ class MainActivity : AppCompatActivity() {
                         if (searchResult != null) {
                             Log.i("Resultado", searchResult.items[9].snippet.thumbnails.default.url)
 
-                            /*var videosList = arrayListOf<Video>()
+                            var videosList = arrayListOf<Video>()
 
                             searchResult.items.forEach{ item: Item ->
                                 val video = Video(
-                                    item.
+                                    item.snippet.title,
+                                    item.snippet.description,
+                                    item.snippet.publishedAt,
+                                    item.snippet.thumbnails.high.url,
+                                    item.id.videoId
                                 )
-                            }*/
+
+                                videosList.add(video)
+                            }
+
+                            Log.i("Resultado", videosList.toString())
+                            configureRecyclerVideos(videosList)
                         }
                     }
                 }
@@ -81,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    private fun configureRecyclerVideos(){
+    private fun configureRecyclerVideos(videosList: ArrayList<Video>){
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         adapter = AdapterRecyclerVideos(videosList)
 

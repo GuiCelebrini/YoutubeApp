@@ -2,6 +2,6 @@ package com.android.guicelebrini.youtubeapp.model
 
 class Item {
 
-    lateinit var itemId : ItemId
+    lateinit var id : ItemId
     lateinit var snippet: Snippet
 }

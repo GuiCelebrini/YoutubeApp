@@ -5,7 +5,7 @@ class Snippet {
     var title = ""
     var description = ""
     var channelTitle = ""
-    var publishAt = ""
+    var publishedAt = ""
     lateinit var thumbnails: SnippetThumbnail
 
 }
