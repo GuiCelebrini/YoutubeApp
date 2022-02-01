@@ -58,7 +58,12 @@ class MainActivity : AppCompatActivity() {
         youtubeService.getSearchResult("snippet", "viewCount", "20", YoutubeInfos.API_KEY, YoutubeInfos.CHANNEL_ID)
             .enqueue(object : Callback<SearchResult>{
                 override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
-                    Log.i("Resultado", "onResponse: $response")
+                    if(response.isSuccessful){
+                        val searchResult = response.body()
+                        if (searchResult != null) {
+                            Log.i("Resultado", searchResult?.pageInfo.totalResults)
+                        }
+                    }
                 }
                 override fun onFailure(call: Call<SearchResult>, t: Throwable) {
 
