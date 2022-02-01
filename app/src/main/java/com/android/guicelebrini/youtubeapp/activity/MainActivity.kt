@@ -19,6 +19,7 @@ import com.android.guicelebrini.youtubeapp.R
 import com.android.guicelebrini.youtubeapp.adapter.AdapterRecyclerVideos
 import com.android.guicelebrini.youtubeapp.api.YoutubeService
 import com.android.guicelebrini.youtubeapp.helper.YoutubeInfos
+import com.android.guicelebrini.youtubeapp.model.Item
 import com.android.guicelebrini.youtubeapp.model.SearchResult
 import com.android.guicelebrini.youtubeapp.model.Video
 import kotlinx.android.synthetic.main.activity_main.*
@@ -61,7 +62,15 @@ class MainActivity : AppCompatActivity() {
                     if(response.isSuccessful){
                         val searchResult = response.body()
                         if (searchResult != null) {
-                            Log.i("Resultado", searchResult?.pageInfo.totalResults)
+                            Log.i("Resultado", searchResult.items[9].snippet.thumbnails.default.url)
+
+                            /*var videosList = arrayListOf<Video>()
+
+                            searchResult.items.forEach{ item: Item ->
+                                val video = Video(
+                                    item.
+                                )
+                            }*/
                         }
                     }
                 }

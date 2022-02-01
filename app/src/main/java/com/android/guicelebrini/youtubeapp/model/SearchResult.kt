@@ -4,5 +4,5 @@ class SearchResult {
 
     var regionCode = ""
     lateinit var pageInfo : PageInfo
-    var itemsList = listOf<Item>()
+    var items = listOf<Item>()
 }
