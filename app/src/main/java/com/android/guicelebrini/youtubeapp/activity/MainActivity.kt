@@ -9,6 +9,7 @@ import android.view.ActionProvider
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuItemCompat
@@ -32,8 +33,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter : AdapterRecyclerVideos
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +89,12 @@ class MainActivity : AppCompatActivity() {
     private fun configureRecyclerVideos(videosList: ArrayList<Video>){
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         adapter = AdapterRecyclerVideos(videosList)
+        adapter.setOnClickListener(object : AdapterRecyclerVideos.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+                Toast.makeText(applicationContext, "Você vai assistir o vídeo '${videosList.get(position).title}' agora", Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
         recycler_videos.layoutManager = layoutManager
         recycler_videos.setHasFixedSize(true)
