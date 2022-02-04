@@ -2,6 +2,7 @@ package com.android.guicelebrini.youtubeapp.activity
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -91,9 +92,13 @@ class MainActivity : AppCompatActivity() {
         adapter = AdapterRecyclerVideos(videosList)
         adapter.setOnClickListener(object : AdapterRecyclerVideos.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                Toast.makeText(applicationContext, "Você vai assistir o vídeo '${videosList.get(position).title}' agora", Toast.LENGTH_SHORT).show()
+                val video = videosList.get(position)
 
-                
+                val intent = Intent(applicationContext, PlayerActivity::class.java)
+                intent.putExtra("videoId", video.videoId)
+                intent.putExtra("title", video.title)
+                intent.putExtra("desc", video.description)
+                startActivity(intent)
 
             }
 
