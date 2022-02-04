@@ -92,6 +92,9 @@ class MainActivity : AppCompatActivity() {
         adapter.setOnClickListener(object : AdapterRecyclerVideos.OnItemClickListener{
             override fun onItemClick(position: Int) {
                 Toast.makeText(applicationContext, "Você vai assistir o vídeo '${videosList.get(position).title}' agora", Toast.LENGTH_SHORT).show()
+
+                
+
             }
 
         })
