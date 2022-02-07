@@ -1,19 +1,15 @@
 package com.android.guicelebrini.youtubeapp.activity
 
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ActionProvider
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,8 +24,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         configureToolbar()
 
-        createVideosList()
+        createVideosList("")
 
     }
 
@@ -50,10 +44,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbarMain)
     }
 
-    private fun createVideosList(){
+    private fun createVideosList(query : String){
+
+        val replacedQuery = query.replace(" ", "+")
+
         val youtubeService = YoutubeService.create()
 
-        youtubeService.getSearchResult("snippet", "viewCount", "20", YoutubeInfos.API_KEY, YoutubeInfos.CHANNEL_ID)
+        youtubeService.getSearchResult("snippet", "viewCount", "100", YoutubeInfos.API_KEY, YoutubeInfos.CHANNEL_ID, replacedQuery)
             .enqueue(object : Callback<SearchResult>{
                 override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
                     if(response.isSuccessful){
@@ -120,7 +117,16 @@ class MainActivity : AppCompatActivity() {
         val searchView = menuItem?.actionView as SearchView
         searchView.queryHint = "Procure um vídeo..."
 
+        searchView.setOnQueryTextListener(object : OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { createVideosList(it) }
+                return true
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
 
         return true
     }

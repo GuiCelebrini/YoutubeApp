@@ -19,6 +19,7 @@ import retrofit2.http.Query
     &maxResults=20
     &key=AIzaSyBOFLgDrtBEtp-wpw523mWEogXm52paLNM
     &channelId=UCKTlayjh47LQdeHGzaHWMfw
+    &q=uncharted+4 (uncharted 4)
 
     --> complete url
 
@@ -36,6 +37,7 @@ interface YoutubeService {
         @Query("maxResults") maxResults: String,
         @Query("key") key: String,
         @Query("channelId") channelId: String,
+        @Query("q") q: String
         ) : Call<SearchResult>
 
 
