@@ -16,6 +16,7 @@ This is my first app fully developed in Kotlin. There are somethings that i lear
 - How to create a Google API key
 - How to use Retrofit in Kotlin
 - How to set an OnClickListener in RecyclerView from an adapter
+- How to use interface callbacks in Kotlin
 
 # Autor
 
